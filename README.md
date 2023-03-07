@@ -127,7 +127,7 @@ $secure_output($username);
 ### Formating
 Formatting refers to the process of converting data from one form to another, often to make it more easily readable or understandable by humans. In programming, formatting functions are often used to convert raw data into a more user-friendly format.
 
-we have two formatting functions: format_date and format_size. format_date accepts a datetime value and returns it in a specified format, while format_size accepts a size value (such as a file size) and converts it to a human-readable format (such as "1.5 MB").
+we have two formatting functions: `format_date` and `format_size`. format_date accepts a datetime value and returns it in a specified format, while format_size accepts a size value (such as a file size) and converts it to a human-readable format (such as "1.5 MB").
 
 It's also important to note that these formatting functions can help improve the security of your application. For example, if you are displaying dates or sizes in a user interface, you want to make sure that any user input is properly sanitized to prevent SQL injection attacks. By using a formatting function like format_date or format_size, you can ensure that any user input is properly formatted and sanitized, reducing the risk of security vulnerabilities.
 ### Others
