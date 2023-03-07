@@ -14,3 +14,31 @@ PHP micro framework a lightweight and efficient tool for building web applicatio
 * inc/translations: the messages that should be displayed to the client
 * inc/init: a folder to store the files for each route
 * inc/classes: a folder to store all your classes
+
+## Routing
+the routing class allows you to create new pages/urls as you define it;
+`
+$route->get($uri, $callback)
+`
+This method registers a route for GET requests. When a GET request is made to the specified URI, the callback function is executed. The $uri parameter should be a string representing the URI of the route. The $callback parameter should be a function that is executed when the route is accessed. The example below demonstrates how to register a route for the home page:
+```
+$route->get("/", function () {
+    $page_title = $language['home_page'];
+    require_once ('inc/init/index.php');
+});
+```
+`$route->post($uri, $callback)`
+This method registers a route for POST requests. When a POST request is made to the specified URI, the callback function is executed. The $uri parameter should be a string representing the URI of the route. The `$callback` parameter should be a function that is executed when the route is accessed. The example below demonstrates how to register a route for the authentication page:
+```
+$route->post("/auth", function () {
+    require_once('core.php');
+    $username = $_POST['username'];
+});
+```
+`$route->any($uri, $callback)`
+This method registers a route for any HTTP request method (GET, POST, PUT, DELETE, etc.). When a request is made to the specified URI, the callback function is executed. The $uri parameter should be a string representing the URI of the route. The $callback parameter should be a function that is executed when the route is accessed. The example below demonstrates how to register a route for an API endpoint:
+```
+$route->any("/api/{api_key}", function ($api_key) {
+    echo 'My API Key: ' . $api_key;
+});
+```
