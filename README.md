@@ -43,3 +43,16 @@ $route->any("/api/{api_key}", function ($api_key) {
     echo 'My API Key: ' . $api_key;
 });
 ```
+
+## Template Engine
+the template engine is a tool for generating HTML dynamically from templates. The render method in the template engine takes two parameters: the name of the template file and an associative array of variables to be used within the template. The template file should contain HTML markup with placeholders for the variables, which are replaced with their corresponding values when the template is rendered. The example below demonstrates how to use the render method to generate HTML for a page with a custom title:
+```
+$template->render('inc/views/page/index/home.php', ['title' => 'My Home Page']);
+```
+
+```
+$route->get("/", function () {
+    require_once ('inc/init/index.php');
+    $template->render('inc/views/page/index/home.php', ['title' => 'My Home Page']);
+});
+```
