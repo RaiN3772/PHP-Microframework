@@ -17,6 +17,7 @@ PHP micro framework a lightweight and efficient tool for building web applicatio
 
 ## Routing
 the routing class allows you to create new pages/urls as you define it;
+
 `
 $route->get($uri, $callback)
 `
