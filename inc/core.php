@@ -45,6 +45,9 @@ require 'bootstrap.php';
 // Initialize User Authentication
 $user = new User();
 
+// Initialize Template Engine
+$template = new TemplateEngine('templates', 'cache', ['cache' => true]);
+
 // Minify HTML output
 ob_start("minify_html");
 
