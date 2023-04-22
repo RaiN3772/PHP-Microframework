@@ -142,7 +142,7 @@ we have two formatting functions: `format_date` and `format_size`. format_date a
 * toastr() function is a front-end redirection with a message, its a jQuery library for non-blocking notification, it takes 2 required parameters and 1 optional, first parameter is the type of the notification you would like to send, for example `info`, `success`, `error`, and `warning`, the second paramter is the message you want to display, the third paramter is optional, the default value is the last page that the user visited, you can write the targeted url you want the user to be redirected to. example: `toastr('success', 'You have succesfully created a new user');`
 
 ## Boostrapper
-in the bootstrapper file you can create menus as manage them as arrays, for exampel if you would like to create footer links you can use.
+in the bootstrapper file you can create menus to manage them as arrays, for example if you would like to create footer links you can use.
 
 ### Footer Links
 
