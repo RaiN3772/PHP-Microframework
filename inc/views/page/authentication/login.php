@@ -49,9 +49,11 @@
                                 </button>
                             </div>
 
+                            <?php if ($setting->get('deactivate_registration') == 'on'): ?>
                             <div class="text-gray-500 text-center fw-semibold fs-6">Not a Member yet?
                                 <a href="/register" class="link-primary ms-2">Sign up</a>
                             </div>
+                            <?php endif; ?>
                         </form>
                     </div>
                 </div>
