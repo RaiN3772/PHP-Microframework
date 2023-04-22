@@ -18,6 +18,7 @@ PHP micro framework a lightweight and efficient tool for building web applicatio
 - Authentication & Registration
 - Built with Bootstrap 5, jQuery, Font Awesome icons
 - Responsive & user-friendly
+- Ability to switch between dark and light modes
 
 ## File Structure
 * index.php: the main entry point of the application
