@@ -118,6 +118,14 @@ Formatting refers to the process of converting data from one form to another, of
 
 we have two formatting functions: `format_date` and `format_size`. format_date accepts a datetime value and returns it in a specified format, while format_size accepts a size value (such as a file size) and converts it to a human-readable format (such as "1.5 MB").
 
+### Boostrapper
+in the bootstrapper file you can create menus as manage them as arrays, for exampel if you would like to create footer links you can use as such
+```
+$FooterItems = [
+    // Item Name    => Link
+    'Link #1' => 'https://example.com',
+];
+```
 ### Others
 * The `redirect()` function is used to redirect the user to a different URL. It sends an HTTP header to the client to instruct the browser to request the specified URL.
 * `get_ip()` function retrieves the client's IP address, even if they are behind a proxy.
