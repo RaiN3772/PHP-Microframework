@@ -1,4 +1,0 @@
-<FilesMatch "(?i)\.(php)$">
-Order Allow,Deny
-Deny from all
-</FilesMatch>
