@@ -6,9 +6,9 @@
     <!--begin::Brand-->
     <div class="aside-logo flex-column-auto" id="aside_logo">
         <!--begin::Logo-->
-        <a href="/" class="logo">
+        <a href="/" class="logo d-flex align-items-center flex-grow-1 flex-lg-grow-0">
             <img alt="Logo" src="<?= $page['platform']['logo']; ?>" class="h-25px" />
-            <span class="text-white fw-bold my-1 fs-2">
+            <span class="text-white fw-bold my-1 fs-1">
                 <?= $page['platform']['name']; ?>
             </span>
         </a>
