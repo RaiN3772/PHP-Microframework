@@ -8,6 +8,7 @@ var Logs = function () {
 
         datatable = $(table).DataTable({
             "info": true,
+            "order": [2, 'desc'],
             'processing': true,
             'responsive': true,
             "pageLength": 10,
