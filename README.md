@@ -188,3 +188,21 @@ $MenuItems = [
     ],
 ];
 ```
+
+## Permissions & Roles
+this framework supports permissions system and roles; follows RBAC (Role-based access control) methodology
+you can create permission variables via the front-end admin routes and use them directly into the application code
+
+to check if user has a permission you can use this method
+```
+$user->hasPermission('permission_name')
+$user->hasPermission('manage_users')
+$database->hasPermission('manage_roles')
+if (!$user->hasPermission('manage_roles')) redirect('/');
+if ($user->hasPermission('manage_roles')) echo 'User has permission';
+```
+
+- Permissions are assigned to roles
+- Roles are assigned to users
+- Roles are created via the front-end and can be assigned to users
+
