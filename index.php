@@ -1,3 +1,1 @@
-<?php
-require 'inc/router.php';
-?>
+<?php require 'inc/router.php';?>
