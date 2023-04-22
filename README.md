@@ -118,17 +118,73 @@ Formatting refers to the process of converting data from one form to another, of
 
 we have two formatting functions: `format_date` and `format_size`. format_date accepts a datetime value and returns it in a specified format, while format_size accepts a size value (such as a file size) and converts it to a human-readable format (such as "1.5 MB").
 
-### Boostrapper
-in the bootstrapper file you can create menus as manage them as arrays, for exampel if you would like to create footer links you can use as such
-```
-$FooterItems = [
-    // Item Name    => Link
-    'Link #1' => 'https://example.com',
-];
-```
 ### Others
 * The `redirect()` function is used to redirect the user to a different URL. It sends an HTTP header to the client to instruct the browser to request the specified URL.
 * `get_ip()` function retrieves the client's IP address, even if they are behind a proxy.
 * `generate_random_string() a function that generate random letters and numbers, it takes one parameter which is the lenght of the generated string; default 16
 * toastr() function is a front-end redirection with a message, its a jQuery library for non-blocking notification, it takes 2 required parameters and 1 optional, first parameter is the type of the notification you would like to send, for example 'info`, `success`, `error`, and `warning`, the second paramter is the message you want to display, the third paramter is optional, the default value is the last page that the user visited, you can write the targeted url you want the user to be redirected to. example: `toastr('success', 'You have succesfully created a new user');`
 
+## Boostrapper
+in the bootstrapper file you can create menus as manage them as arrays, for exampel if you would like to create footer links you can use.
+
+### Footer Links
+
+```
+$FooterItems = [
+    // Item Name    => Link
+    'Link #1' => 'https://example.com',
+];
+```
+
+### Aside Menu
+In aside menu you can create menu items, it supports font awesome icon library, with linking, and permission system
+for example; a simple menu item
+```
+$MenuItems = [
+    'About' => [
+        'icon'       => 'fa-solid fa-info',
+        'link'      => '/about',
+    ],
+];
+```
+for a more complex menu with sub items
+```
+$MenuItems = [
+    'Admin Panel' => [
+        'icon'       => 'fa-solid fa-lock',
+        'permission' => 'admin_panel',
+        'route'      => '/admin/',
+        'sub'        => [
+            'Home'        => [
+                'link' => '/admin',
+                'icon' => 'fa-solid fa-unlock-keyhole',
+            ],
+            'Settings'    => [
+                'link'       => '/admin/settings',
+                'icon'       => 'fa-solid fa-cog',
+                'permission' => 'manage_settings',
+            ],
+            'Roles'       => [
+                'link'       => '/admin/roles',
+                'icon'       => 'fa-solid fa-user-tag',
+                'permission' => 'manage_roles',
+            ],
+            'Permissions' => [
+                'link'       => '/admin/permissions',
+                'icon'       => 'fa-solid fa-user-lock',
+                'permission' => 'manage_permissions',
+            ],
+            'Users'       => [
+                'link'       => '/admin/users',
+                'icon'       => 'fa-solid fa-users',
+                'permission' => 'manage_users',
+            ],
+            'Logs'        => [
+                'link'       => '/admin/logs',
+                'icon'       => 'fa-solid fa-clipboard-list',
+                'permission' => 'manage_logs',
+            ],
+        ],
+    ],
+];
+```
