@@ -177,7 +177,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `last_login` datetime DEFAULT NULL,
   `last_online` datetime DEFAULT NULL,
   `last_ip` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT 'Unknown',
-  `register_ip` varchar(255) NOT NULL,
+  `register_ip` varchar(255) NOT NULL DEFAULT 'Unknown',
   `avatar` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT '/assets/images/blank.png',
   `display_name` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT 'Unknown',
   PRIMARY KEY (`id`),
