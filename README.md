@@ -6,6 +6,21 @@
 ## Description
 PHP micro framework a lightweight and efficient tool for building web applications. It focuses on providing essential features and functionality without the added complexity and overhead of larger frameworks. It follows the Model-View-Controller (MVC) pattern, allowing for a clear separation of concerns and easy maintenance. developers can quickly develop and deploy web applications, without sacrificing performance or scalability.
 
+## Features
+- Routing System: provides routing functionality to help you define how different URLs should be handled.
+- Database Support: provides built-in support for interacting with databases, making it easier to work with data in your application.
+- Secure: provides features such as CSRF protection and input validation to help you build secure applications
+- Auto Loading Classes
+- Simple Configuration
+- Friendly Urls
+- Custom Admin Control Panel
+- Profiling System
+- Audit Logs System
+- Permissions & Roles System
+- Authentication & Registration
+- Built with Bootstrap 5, jQuery, Font Awesome icons
+- Responsive & user-friendly
+
 ## File Structure
 * index.php: the main entry point of the application
 * inc/routes.php: a routing file to create routes and urls
