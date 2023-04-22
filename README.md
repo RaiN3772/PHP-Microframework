@@ -8,12 +8,12 @@ PHP micro framework a lightweight and efficient tool for building web applicatio
 
 ## File Structure
 * index.php: the main entry point of the application
-* inc/routes.php: a routing file to creare routes and urls
+* inc/routes.php: a routing file to create routes and urls
 * inc/functions.php: user defined functions file that are initiated with every route you create
 * inc/core.php: the core file of the application
 * inc/config.php: a configuration file for the entire application
+* inc/bootstrap.php: the bootstraper file, you can customize things suchs as links and menues
 * inc/views: the templates for the application
-* inc/translations: the messages that should be displayed to the client
 * inc/init: a folder to store the files for each route
 * inc/classes: a folder to store all your classes
 
@@ -25,8 +25,8 @@ $route->get($uri, $callback)
 `
 This method registers a route for GET requests. When a GET request is made to the specified URI, the callback function is executed. The $uri parameter should be a string representing the URI of the route. The $callback parameter should be a function that is executed when the route is accessed. The example below demonstrates how to register a route for the home page:
 ```
-$route->get("/", function () {
-    $page_title = $language['home_page'];
+$route->get("/new_page", function () {
+    $page['title'] = 'My New Page';
     require_once ('inc/init/index.php');
 });
 ```
@@ -43,19 +43,6 @@ This method registers a route for any HTTP request method (GET, POST, PUT, DELET
 ```
 $route->any("/api/{api_key}", function ($api_key) {
     echo 'My API Key: ' . $api_key;
-});
-```
-
-## Template Engine
-the template engine is a tool for generating HTML dynamically from templates. The render method in the template engine takes two parameters: the name of the template file and an associative array of variables to be used within the template. The template file should contain HTML markup with placeholders for the variables, which are replaced with their corresponding values when the template is rendered. The example below demonstrates how to use the render method to generate HTML for a page with a custom title:
-```
-$template->render('inc/views/page/index/home.php', ['title' => 'My Home Page']);
-```
-
-```
-$route->get("/", function () {
-    require_once ('inc/init/index.php');
-    $template->render('inc/views/page/index/home.php', ['title' => 'My Home Page']);
 });
 ```
 
@@ -104,7 +91,7 @@ $bind = ['id' => 1];
 $result = $database->delete('my_table', $where, $bind);
 ```
 ### Query
-if you have a complex query that you want to perform you can use the `query` method instead of the mentioned one
+if you have a complex query that you want to perform you can use the `query` method instead of the mentioned ones
 ```
 // Define the SQL query
 $sql = "SELECT * FROM `users` LEFT JOIN `posts` ON posts.user_id = users.user_id WHERE id = :id ";
@@ -118,11 +105,11 @@ $result = $database->query($sql, $parameters)->fetch();
 
 ## User Defined Functions
 ### Security
-the framwork comes with security features that enables you to secure you application for both front-end and back-end.
+the framwork comes with security features that enables you to secure your application for both front-end and back-end.
 * to prevent SQL Injection, you must always use the database class that provided in the previous example
 * to prevent Cross-Site Scripting (XSS) when always use the `user defined function` that provided
 ```
-$secure_input($username);
+$secure($username);
 OR
 $secure_output($username);
 ```
@@ -131,8 +118,9 @@ Formatting refers to the process of converting data from one form to another, of
 
 we have two formatting functions: `format_date` and `format_size`. format_date accepts a datetime value and returns it in a specified format, while format_size accepts a size value (such as a file size) and converts it to a human-readable format (such as "1.5 MB").
 
-It's also important to note that these formatting functions can help improve the security of your application. For example, if you are displaying dates or sizes in a user interface, you want to make sure that any user input is properly sanitized to prevent SQL injection attacks. By using a formatting function like format_date or format_size, you can ensure that any user input is properly formatted and sanitized, reducing the risk of security vulnerabilities.
 ### Others
 * The `redirect()` function is used to redirect the user to a different URL. It sends an HTTP header to the client to instruct the browser to request the specified URL.
 * `get_ip()` function retrieves the client's IP address, even if they are behind a proxy.
-* `generate_random_string() a function that generate random letters and numbers
+* `generate_random_string() a function that generate random letters and numbers, it takes one parameter which is the lenght of the generated string; default 16
+* toastr() function is a front-end redirection with a message, its a jQuery library for non-blocking notification, it takes 2 required parameters and 1 optional, first parameter is the type of the notification you would like to send, for example 'info`, `success`, `error`, and `warning`, the second paramter is the message you want to display, the third paramter is optional, the default value is the last page that the user visited, you can write the targeted url you want the user to be redirected to. example: `toastr('success', 'You have succesfully created a new user');`
+
