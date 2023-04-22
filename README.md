@@ -125,7 +125,9 @@ the framwork comes with security features that enables you to secure your applic
 * to prevent Cross-Site Scripting (XSS) when always use the `user defined function` that provided
 ```
 $secure($username);
-OR
+```
+or
+```
 $secure_output($username);
 ```
 ### Formating
@@ -137,7 +139,7 @@ we have two formatting functions: `format_date` and `format_size`. format_date a
 * The `redirect()` function is used to redirect the user to a different URL. It sends an HTTP header to the client to instruct the browser to request the specified URL.
 * `get_ip()` function retrieves the client's IP address, even if they are behind a proxy.
 * `generate_random_string() a function that generate random letters and numbers, it takes one parameter which is the lenght of the generated string; default 16
-* toastr() function is a front-end redirection with a message, its a jQuery library for non-blocking notification, it takes 2 required parameters and 1 optional, first parameter is the type of the notification you would like to send, for example 'info`, `success`, `error`, and `warning`, the second paramter is the message you want to display, the third paramter is optional, the default value is the last page that the user visited, you can write the targeted url you want the user to be redirected to. example: `toastr('success', 'You have succesfully created a new user');`
+* toastr() function is a front-end redirection with a message, its a jQuery library for non-blocking notification, it takes 2 required parameters and 1 optional, first parameter is the type of the notification you would like to send, for example `info`, `success`, `error`, and `warning`, the second paramter is the message you want to display, the third paramter is optional, the default value is the last page that the user visited, you can write the targeted url you want the user to be redirected to. example: `toastr('success', 'You have succesfully created a new user');`
 
 ## Boostrapper
 in the bootstrapper file you can create menus as manage them as arrays, for exampel if you would like to create footer links you can use.
