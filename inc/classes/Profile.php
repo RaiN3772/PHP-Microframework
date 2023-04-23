@@ -100,21 +100,21 @@ class Profile extends Database {
     }
 
     public function allow_name_change() {
-        if ($this->allow_name_change == 'on' && !$this->hasPermission('manage_users')) {
+        if ($this->allow_name_change == 'on' || $this->hasPermission('manage_users')) {
             return true;
         }
         return false;
     }
 
     public function allow_username_change() {
-        if ($this->allow_username_change == 'on' && !$this->hasPermission('manage_users')) {
+        if ($this->allow_username_change == 'on' || $this->hasPermission('manage_users')) {
             return true;
         }
         return false;
     }
 
     public function allow_email_change() {
-        if ($this->allow_email_change == 'on' && !$this->hasPermission('manage_users')) {
+        if ($this->allow_email_change == 'on' || $this->hasPermission('manage_users')) {
             return true;
         }
         return false;
