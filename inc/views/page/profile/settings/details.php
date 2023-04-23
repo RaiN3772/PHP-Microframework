@@ -27,7 +27,7 @@
                     </div>
                 </div>
             </div>
-            <?php if (!$profile->allow_name_change()): ?>
+            <?php if ($profile->allow_name_change()): ?>
                 <div class="row mb-6">
                     <label class="col-lg-4 col-form-label required fw-semibold fs-6">Display Name</label>
                     <div class="col-lg-8 fv-row">
@@ -36,7 +36,7 @@
                 </div>
             <?php endif; ?>
 
-            <?php if (!$profile->allow_username_change()): ?>
+            <?php if ($profile->allow_username_change()): ?>
                 <div class="row mb-6">
                     <label class="col-lg-4 col-form-label required fw-semibold fs-6">User Name</label>
                     <div class="col-lg-8 fv-row">
@@ -45,7 +45,7 @@
                 </div>
             <?php endif; ?>
 
-            <?php if (!$profile->allow_email_change()): ?>
+            <?php if ($profile->allow_email_change()): ?>
                 <div class="row mb-6">
                     <label class="col-lg-4 col-form-label required fw-semibold fs-6">Email Address</label>
                     <div class="col-lg-8 fv-row">
