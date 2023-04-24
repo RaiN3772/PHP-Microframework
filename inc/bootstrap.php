@@ -2,16 +2,12 @@
 
 // Set the current page
 $page['current'] = secure(basename($_SERVER['REQUEST_URI']));
-
 // Get the route of the current page
 $page['route'] = $_SERVER['REQUEST_URI'];
-
 // Get the previous page
 $page['last'] = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '/';
-
 // Set the title of the page
 $page['title'] = $page['title'] ?? secure($setting->get('website_name'));
-
 // Get the hostname of the server
 $page['host'] = $_SERVER['SERVER_NAME'];
 
