@@ -39,5 +39,6 @@ define("cookie_secret_key", "c6QOZ##H9y@SZJo$9");
 
 define('version', `2.0.5`);
 
+// Define an array of user IDs that have superadmin privileges
 define ('superadmin', [1]);
 
