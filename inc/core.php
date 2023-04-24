@@ -1,9 +1,8 @@
 <?php
 /**
  * Amir Alatrash
- * Copyright 2022 Amir Alatrash, All Rights Reserved
+ * Copyright 2023 Amir Alatrash, All Rights Reserved
  *
- * Website: palnetwork.xyz
  *
  * Note: Do not change anything unless you know what are you doing :)
  *
