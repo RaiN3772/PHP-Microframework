@@ -1,20 +1,35 @@
 <?php
 
-$page['current']                 = secure(basename($_SERVER['REQUEST_URI']));
-$page['route']                   = $_SERVER['REQUEST_URI'];
-$page['last']                    = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '/';
-$page['title']                   = $page['title'] ?? secure($setting->get('website_name'));
-$page['host']                    = $_SERVER['SERVER_NAME'];
-$page['platform']['url']         = secure($setting->get('website_url'));
-$page['platform']['name']        = secure($setting->get('website_name'));
-$page['platform']['logo']        = secure($setting->get('logo_url'));
-$page['platform']['favicon']     = secure($setting->get('favicon_url'));
-$page['platform']['description'] = secure($setting->get('website_description'));
-$page['platform']['debugging']   = secure($setting->get('debugging'));
+// Set the current page
+$page['current'] = secure(basename($_SERVER['REQUEST_URI']));
 
+// Get the route of the current page
+$page['route'] = $_SERVER['REQUEST_URI'];
+
+// Get the previous page
+$page['last'] = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '/';
+
+// Set the title of the page
+$page['title'] = $page['title'] ?? secure($setting->get('website_name'));
+
+// Get the hostname of the server
+$page['host'] = $_SERVER['SERVER_NAME'];
+
+// Set the URL, name, logo, favicon, and description of the platform
+$page['platform']['url'] = secure($setting->get('website_url'));
+$page['platform']['name'] = secure($setting->get('website_name'));
+$page['platform']['logo'] = secure($setting->get('logo_url'));
+$page['platform']['favicon'] = secure($setting->get('favicon_url'));
+$page['platform']['description'] = secure($setting->get('website_description'));
+
+// Set the debugging mode
+$page['platform']['debugging'] = secure($setting->get('debugging'));
+
+// Set the number of failed login attempts and the time to lock out
 define("failed_logins", $setting->get('failed_logins'));
 define("locked_out_time", $setting->get('failed_login_time'));
 
+// Set the menu items
 $MenuItems = [
     'Admin Panel' => [
         'icon'       => 'fa-solid fa-lock',
@@ -54,8 +69,7 @@ $MenuItems = [
     ],
 ];
 
-
+// Set the footer items
 $FooterItems = [
-    // Item Name    => Link
     'Link #1' => 'https://example.com',
 ];
