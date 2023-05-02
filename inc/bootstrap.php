@@ -7,7 +7,7 @@ $page['route'] = $_SERVER['REQUEST_URI'];
 // Get the previous page
 $page['last'] = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '/';
 // Set the title of the page
-$page['title'] = $page['title'] ?? secure($setting->get('website_name'));
+$page['title'] = secure($setting->get('website_name'));
 // Get the hostname of the server
 $page['host'] = $_SERVER['SERVER_NAME'];
 
