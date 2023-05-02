@@ -8,9 +8,6 @@
         <!--begin::Logo-->
         <a href="/" class="logo d-flex align-items-center flex-grow-1 flex-lg-grow-0">
             <img alt="Logo" src="<?= $page['platform']['logo']; ?>" class="h-25px" />
-            <span class="text-white fw-bold my-1 fs-1">
-                <?= $page['platform']['name']; ?>
-            </span>
         </a>
         <!--end::Logo-->
         <!--begin::Aside toggler-->
