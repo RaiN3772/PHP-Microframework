@@ -167,16 +167,28 @@ class Database
         }
     }
 
-    public function load_permission() {
+    public function loadPermissions() {
         return $this->query("SELECT DISTINCT permission_name FROM users INNER JOIN user_roles ON user_roles.user_id = users.id INNER JOIN role_permissions ON user_roles.role_id = role_permissions.role_id INNER JOIN permissions ON role_permissions.permission_id = permissions.permission_id WHERE users.id = :id", [':id' => $_SESSION['user_id']])->fetchAll();
     }
     public function hasPermission($permission_name) {
-        $permissions = $this->load_permission();
+        $permissions = $this->loadPermissions();
         $permissions = array_map(function ($permission) {
             return $permission['permission_name'];
         }, $permissions);
         if (in_array($permission_name, $permissions)) return true;
         else if (in_array('root', $permissions)) return true;
+        else if (in_array($_SESSION['user_id'], superadmin)) return true;
+        return false;
+    }
+    
+    public function hasRole($role_title) {
+        $sql = $this->query('SELECT COUNT(*) as count FROM users INNER JOIN user_roles ON user_roles.user_id = users.id INNER JOIN roles ON roles.role_id = user_roles.role_id WHERE users.id = :id AND roles.role_title = :role_title', [':id' => $_SESSION['user_id'], ':role_title' => $role_title])->fetch(PDO::FETCH_ASSOC);
+        if ($sql['count'] > 0) return true;
+        $permissions = $this->loadPermissions();
+        $permissions = array_map(function ($permission) {
+            return $permission['permission_name'];
+        }, $permissions);
+        if (in_array('root', $permissions)) return true;
         else if (in_array($_SESSION['user_id'], superadmin)) return true;
         return false;
     }
