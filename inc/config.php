@@ -26,7 +26,7 @@ define("db_engine", "mysql");
  *
  * COOKIE_RUNTIME: How long should a cookie be valid ? 1209600 seconds = 2 weeks
  * COOKIE_SECRET_KEY: Put a random value here to make your app more secure. When changed, all cookies are reset.
- **/
+ */
 
 
 define("cookie_runtime", 1209600);
@@ -39,6 +39,12 @@ define("cookie_secret_key", "c6QOZ##H9y@SZJo$9");
 
 define('version', `2.0.5`);
 
-// Define an array of user IDs that have superadmin privileges
+/**
+ * Super Administrators
+ *  A comma separated list of user IDs who cannot
+ *  be edited, deleted or banned in the Admin CP.
+ *  The administrator permissions for these users
+ *  cannot be altered either.
+ */
 define ('superadmin', [1]);
 
