@@ -76,7 +76,7 @@
 
                     <?php else: ?>
                         <div class="menu-item">
-                            <a class="menu-link<?=(preg_match($item['route'], $page['route'])) ? ' active' : '' ;?>" href="<?= $item['link']; ?>">
+                            <a class="menu-link" href="<?= $item['link']; ?>">
                                 <span class="menu-icon"><i class="<?= $item['icon']; ?> fs-2"></i></span>
                                 <span class="menu-title"><?= secure($name); ?></span>
                             </a>
