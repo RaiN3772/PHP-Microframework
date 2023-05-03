@@ -20,7 +20,7 @@
                 </div>
                 <div class="d-flex align-items-center flex-wrap w-100">
                     <div class="mb-1 pe-3 flex-grow-1">
-                        <aspan class="fs-5 text-gray-800 text-hover-primary fw-bold">Platform Version</span>
+                        <span class="fs-5 text-gray-800 text-hover-primary fw-bold">Platform Version</span>
                         <div class="text-gray-400 fw-semibold fs-7">The friendly version number we're running</div>
                     </div>
 
