@@ -30,7 +30,7 @@ if (isset($_POST['email']) && !empty(secure($_POST['email'])) && $_POST['email']
 if (isset($_FILES['avatar']) && $_FILES["avatar"]["error"] == UPLOAD_ERR_OK) {
     $image['extension'] = strtolower(pathinfo(basename($_FILES['avatar']['name']), PATHINFO_EXTENSION));
     $image['avatar'] = $setting->get('user_folder') . uniqid() . '-' . $user->id()  . '-' . generate_random_string(10) . '.' . $image['extension'];
-    $image['allowed'] = array_map('trim', explode(',', $setting->get('allowed_images_type')));;
+    $image['allowed'] = array_map('trim', explode(',', $setting->get('allowed_images_type')));
     if ($_FILES['avatar']['size'] < 10) toastr('error', 'This is not a real image');
     if ($_FILES['avatar']['size'] > $setting->get('allowed_image_size') * 1024 * 1024) toastr('error', 'Image size is too big');
     if (!in_array($image['extension'], $image['allowed'])) toastr('error', 'Image type is not allowed');
