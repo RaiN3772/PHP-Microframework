@@ -5,10 +5,15 @@
 <div class="d-flex flex-column flex-column-fluid">
   <div class="d-flex flex-column-fluid">
     <div class="container-xxl">
-      <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-5 g-xl-9">
+      <div class="d-flex justify-content-end mb-10">
+        <button type="button" class="btn btn-lg btn-light-primary" data-bs-toggle="modal" data-bs-target="#modal_add_role">
+        <span class="svg-icon svg-icon-2"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect opacity="0.5" x="11.364" y="20.364" width="16" height="2" rx="1" transform="rotate(-90 11.364 20.364)" fill="currentColor"></rect><rect x="4.36396" y="11.364" width="16" height="2" rx="1" fill="currentColor"></rect></svg></span>Add Role
+        </button>
+      </div>
+      <div class="mb-10 row row-cols-1 row-cols-md-2 row-cols-xl-3 g-5 g-xl-9">
         <?php foreach ($roles as $role): ?>
           <div class="col-md-4">
-            <div class="card card-flush h-md-100">
+            <div class="card card-flush mb-10">
               <div class="card-header">
                 <div class="card-title">
                   <h2>
@@ -22,15 +27,20 @@
                   <?= $role['total']; ?>
                 </div>
                 <div class="d-flex flex-column text-gray-600">
-                  <?php $permissions = $database->query("SELECT permissions.permission_title FROM permissions LEFT JOIN role_permissions ON permissions.permission_id = role_permissions.permission_id WHERE role_permissions.role_id = :role_id", [':role_id' => $role['role_id']]); ?>
-                  <?php if ($permissions->rowCount() == 0): ?>
-                    <div class="d-flex align-items-center py-2"><span class="bullet bg-danger me-3"></span> No Permissions
-                      Assigned</div>
+                  <?php 
+                  $permissions = $database->query("SELECT permissions.permission_title FROM permissions LEFT JOIN role_permissions ON permissions.permission_id = role_permissions.permission_id WHERE role_permissions.role_id = :role_id", [':role_id' => $role['role_id']]); 
+                  $permissionsCount = $permissions->rowCount(); 
+                  $counter = 0;
+                  ?>
+                  <?php if ($permissionsCount == 0): ?>
+                    <div class="d-flex align-items-center py-2"><span class="bullet bg-danger me-3"></span> No Permissions Assigned</div>
                   <?php else: ?>
-                    <?php foreach ($permissions as $permission): ?>
-                      <div class="d-flex align-items-center py-2"><span class="bullet bg-primary me-3"></span>
-                        <?= secure($permission['permission_title']); ?>
-                      </div>
+                    <?php foreach ($permissions->fetchAll() as $permission): ?>
+                      <?php $counter++; ?>
+                      <div class="d-flex align-items-center py-2"><span class="bullet bg-primary me-3"></span><?= secure($permission['permission_title']); ?></div>
+                      <?php if ($counter >= 4): ?>
+                        <div class="d-flex align-items-center py-2"><span class="bullet bg-primary me-3"></span>And <?=$permissionsCount - $counter;?> more...</div>
+                      <?php break; endif; ?>
                     <?php endforeach; ?>
                   <?php endif; ?>
                 </div>
@@ -42,17 +52,6 @@
             </div>
           </div>
         <?php endforeach; ?>
-        <div class="ol-md-4">
-          <div class="card h-md-100">
-            <div class="card-body d-flex flex-center">
-              <button type="button" class="btn btn-clear d-flex flex-column flex-center" data-bs-toggle="modal"
-                data-bs-target="#modal_add_role">
-                <img src="/assets/images/add_role.png" alt="Add Role" class="mw-100 mh-150px mb-7">
-                <div class="fw-bold fs-3 text-gray-600 text-hover-primary">Add New Role</div>
-              </button>
-            </div>
-          </div>
-        </div>
 
       </div>
     </div>
@@ -64,7 +63,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h2 class="fw-bold">Add a Role</h2>
-        <div class="btn btn-icon btn-sm btn-active-icon-primary" data-kt-roles-modal-action="close">
+        <div class="btn btn-icon btn-sm btn-active-icon-primary" data-bs-dismiss="modal">
           <i class="ki-outline ki-cross fs-1"></i>
         </div>
       </div>
