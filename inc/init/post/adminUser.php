@@ -14,9 +14,9 @@ if (isset($_POST['display_name']) && !empty(secure($_POST['display_name'])) && s
     $database->update('users', ['display_name' => secure($_POST['display_name'])], ['id' => $userInfo['id']]);
 }
 
-if (isset($_POST['username']) && !empty(secure($_POST['username'])) && secure($_POST['username']) != $userInfo['name']) {
+if (isset($_POST['username']) && !empty(secure($_POST['username'])) && secure(strtolower($_POST['username'])) != $userInfo['name']) {
     if ($database->query("SELECT `name` FROM users WHERE `name` = :name", [':name' => secure($_POST['username'])])->rowCount() > 0) toastr('error', 'Username already taken');
-    $database->update('users', ['name' => secure($_POST['username'])], ['id' => $userInfo['id']]);
+    $database->update('users', ['name' => secure(strtolower($_POST['username']))], ['id' => $userInfo['id']]);
 }
 
 if (isset($_POST['email']) && !empty(secure($_POST['email'])) && secure($_POST['email']) != $userInfo['email']) {
