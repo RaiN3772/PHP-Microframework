@@ -172,8 +172,6 @@ CREATE TABLE IF NOT EXISTS `users` (
   `password` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
   `token` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   `created_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `failed_logins` int NOT NULL DEFAULT '0',
-  `last_failed_login` datetime DEFAULT NULL,
   `last_login` datetime DEFAULT NULL,
   `last_online` datetime DEFAULT NULL,
   `last_ip` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL DEFAULT 'Unknown',
