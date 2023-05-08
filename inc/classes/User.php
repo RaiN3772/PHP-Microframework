@@ -75,19 +75,29 @@ class User extends Database
             $this->errors[] = 'Oops! It looks like your username or password is empty';
             return false;
         }
+        $startingTime = time();
+        // check if the user has exceeded the maximum number of login attempts
+        if ($this->isUserBlocked()) {
+            $this->errors[] = 'You have entered an incorrect username or password too many times. Please try again later.';
+            return false;
+        }
         $sql = $this->query("SELECT * FROM users WHERE `name` = :username LIMIT 1", [':username' => strtolower($username)]);
         if ($sql->rowCount() == 0) {
+            // increment the login attempts for the given username
+            $this->incrementLoginAttempts($username);
+            // Delay the execution time for the response
+            sleep(rand(1, 3));
+            usleep(rand(0, 1000000));
             $this->errors[] = 'Oops! It looks like your username or password is incorrect';
             return false;
         }
         $user     = $sql->fetchObject();
-        $cooldown = date("Y-m-d h:i:s", time() - locked_out_time);
-        if ($user->failed_logins >= failed_logins && strtotime($user->last_failed_login) >= strtotime($cooldown)) {
-            $this->errors[] = 'You have entered an incorrect password' . failed_logins . ' or more times already. Please wait ' . (locked_out_time / 60) . ' minutes to try again';
-            return false;
-        }
         if (!password_verify($password, $user->password)) {
-            $this->query("UPDATE users SET failed_logins = failed_logins +1, last_failed_login = NOW() WHERE id = :id LIMIT 1", [':id' => $user->id]);
+            // increment the login attempts for the given username
+            $this->incrementLoginAttempts($username);
+            // Delay the execution time for the response
+            sleep(max(1, rand(1,3) + $startingTime - time()));
+            usleep(rand(0, 1000000));
             $this->errors[] = 'Oops! It looks like your username or password is incorrect';
             return false;
         }
@@ -150,9 +160,27 @@ class User extends Database
         $this->user_is_logged_in = false;
         return true;
     }
+    
+    private function isUserBlocked() {
+        // Get the login attempts for the current ip address
+        $sql = $this->query("SELECT * FROM auth_attempts WHERE `ip_address` = :ip", [':ip' => get_ip()]);
+        // If no entry exists, return false
+        if ($sql->rowCount() == 0) return false;
+        $login_attempts = $sql->fetchObject();
+        // Check if the user is blocked based on the number of attempts and the cooldown time
+        $blocked_time = time() - locked_out_time;
+        if ($login_attempts->attempts >= failed_logins && strtotime($login_attempts->last_attempt) > strtotime($blocked_time)) return true;
+        return false;
+    }
 
-    private function resetLoginCounter() {
-        return $this->query("UPDATE users SET failed_logins = 0, last_failed_login = NULL WHERE id = :id AND failed_logins != 0", [':id' => $this->id]);
+    private function incrementLoginAttempts($username) {
+        // increment the number of login attempts for the given username
+        return $this->query("INSERT INTO auth_attempts (`ip_address`, `attempts`, `last_attempt`) VALUES (:ip, 1, NOW()) ON DUPLICATE KEY UPDATE `attempts` = `attempts` + 1, `last_attempt` = NOW()", [':ip' => get_ip()]);
+    }
+    
+    private function resetLoginAttempts() {
+        // reset the number of login attempts for the given username
+        $sql = $this->query("DELETE FROM auth_attempts WHERE `ip_address` = :ip", [':ip' => get_ip()]);
     }
 
     private function updateLoginTime() {
