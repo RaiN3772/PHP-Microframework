@@ -241,6 +241,22 @@ CREATE TABLE IF NOT EXISTS `user_settings` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `auth_attempts`
+--
+
+DROP TABLE IF EXISTS `auth_attempts`;
+CREATE TABLE IF NOT EXISTS `auth_attempts` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `ip_address` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `attempts` int NOT NULL DEFAULT '1',
+  `last_attempt` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`ip_address`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 --
 -- Constraints for dumped tables
 --
