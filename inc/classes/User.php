@@ -110,7 +110,7 @@ class User extends Database
         $this->role              = $this->getUserRole();
         $this->user_is_logged_in = true;
 
-        $this->resetLoginCounter();
+        $this->resetLoginAttempts();
         $this->updateLoginTime();
         $this->updateIPAddress();
 
