@@ -14,7 +14,7 @@ $route->get("/auth", function () {
 $route->post("/auth", function () {
     require_once('core.php');
     $form['username'] = secure($_POST['username']);
-    $form['password'] = secure($_POST['password']);
+    $form['password'] = $_POST['password'];
     if (isset($_POST['rememberme']) && $_POST['rememberme'] == 1) {
         $form['rememberme'] = $_POST['rememberme'];
     }
