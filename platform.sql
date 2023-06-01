@@ -248,7 +248,7 @@ CREATE TABLE IF NOT EXISTS `user_settings` (
 DROP TABLE IF EXISTS `auth_attempts`;
 CREATE TABLE IF NOT EXISTS `auth_attempts` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `ip_address` varchar(64 NOT NULL,
+  `ip_address` varchar(64) NOT NULL,
   `attempts` int NOT NULL DEFAULT '1',
   `last_attempt` datetime NOT NULL,
   PRIMARY KEY (`id`),
